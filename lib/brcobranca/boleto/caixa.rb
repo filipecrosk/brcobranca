@@ -19,7 +19,7 @@ module Brcobranca
       # Validações
       validates_length_of :carteira, is: 2, message: 'deve possuir 2 dígitos.'
       validates_length_of :convenio, is: 6, message: 'deve possuir 6 dígitos.'
-      validates_length_of :numero_documento, is: 15, message: 'deve possuir 15 dígitos.'
+      validates_length_of :numero_documento, is: 16, message: 'deve possuir 16 dígitos.'
 
       # Nova instância da CaixaEconomica
       # @param (see Brcobranca::Boleto::Base#initialize)
@@ -48,12 +48,13 @@ module Brcobranca
         '0'
       end
 
+      
       # Nosso número, 17 dígitos
       #  1 à 2: carteira
       #  3 à 17: campo_livre
       # @return [String]
       def nosso_numero_boleto
-        "#{carteira}#{numero_documento}-#{nosso_numero_dv}"
+        "#{carteira}#{numero_documento}" #-#{nosso_numero_dv}
       end
 
       # Dígito verificador do Nosso Número
